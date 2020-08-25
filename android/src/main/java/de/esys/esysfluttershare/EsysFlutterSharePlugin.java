@@ -88,6 +88,8 @@ public class EsysFlutterSharePlugin implements MethodCallHandler {
         if (!text.isEmpty()) shareIntent.putExtra(Intent.EXTRA_TEXT, text);
         
         shareIntent = new Intent(Intent.ACTION_VIEW, Uri.fromFile(file));
+        shareIntent.setType(mimeType);
+        shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         
         System.out.println("mime-type = " + mimeType);
         Intent chooser = Intent.createChooser(shareIntent, title);
@@ -95,6 +97,8 @@ public class EsysFlutterSharePlugin implements MethodCallHandler {
 
         for (ResolveInfo resolveInfo : resInfoList) {
             String packageName = resolveInfo.activityInfo.packageName;
+            System.out.println("granting access to " + packageName);
+            System.out.println("granting access to " + packageName);
             System.out.println("granting access to " + packageName);
             activeContext.grantUriPermission(packageName, contentUri, Intent.FLAG_GRANT_WRITE_URI_PERMISSION | Intent.FLAG_GRANT_READ_URI_PERMISSION);
         }
