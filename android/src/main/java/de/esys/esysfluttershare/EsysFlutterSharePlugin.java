@@ -126,7 +126,7 @@ public class EsysFlutterSharePlugin implements MethodCallHandler {
         if (!text.isEmpty()) shareIntent.putExtra(Intent.EXTRA_TEXT, text);
 
         Intent chooser = Intent.createChooser(shareIntent, title);
-        List<ResolveInfo> resInfoList = activeContext.getPackageManager().queryIntentActivities(chooser, PackageManager.MATCH_ALL);
+        List<ResolveInfo> resInfoList = activeContext.getPackageManager().queryIntentActivities(chooser, PackageManager.MATCH_DEFAULT_ONLY);
 
         for (ResolveInfo resolveInfo : resInfoList) {
             String packageName = resolveInfo.activityInfo.packageName;
