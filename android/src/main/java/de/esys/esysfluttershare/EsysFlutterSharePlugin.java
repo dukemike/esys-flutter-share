@@ -78,7 +78,7 @@ public class EsysFlutterSharePlugin implements MethodCallHandler {
 
         Context activeContext = _registrar.activeContext();
 
-        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        Intent shareIntent = new Intent(Intent.ACTION_VIEW);
         shareIntent.setType(mimeType);
         File file = new File(activeContext.getCacheDir(), name);
         String fileProviderAuthority = activeContext.getPackageName() + PROVIDER_AUTH_EXT;
