@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.net.Uri;
+import android.provider.ContactsContract;
 import android.util.Log;
 
 import androidx.core.content.FileProvider;
@@ -87,8 +88,14 @@ public class EsysFlutterSharePlugin implements MethodCallHandler {
         // add optional text
         if (!text.isEmpty()) shareIntent.putExtra(Intent.EXTRA_TEXT, text);
         
-        shareIntent = new Intent(Intent.ACTION_VIEW, Uri.fromFile(file));
-        shareIntent.setType(mimeType);
+        if (mimeType.equals("text/vcard")) {
+            System.out.println("leveraging mimeType");
+            shareIntent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
+            shareIntent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
+        } else {
+            shareIntent = new Intent(Intent.ACTION_VIEW, Uri.fromFile(file));
+            shareIntent.setType(mimeType);
+        }
         shareIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         
         System.out.println("mime-type = " + mimeType);
