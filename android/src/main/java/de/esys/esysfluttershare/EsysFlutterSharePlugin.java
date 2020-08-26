@@ -88,11 +88,12 @@ public class EsysFlutterSharePlugin implements MethodCallHandler {
         // add optional text
         if (!text.isEmpty()) shareIntent.putExtra(Intent.EXTRA_TEXT, text);
         
-        if (mimeType.equals("text/vcard")) {
+        if (mimeType.equals("text/vcard") || mimeType.equals("text/x-vcard")) {
             System.out.println("leveraging mimeType");
             shareIntent = new Intent(ContactsContract.Intents.Insert.ACTION);
             shareIntent.setType(ContactsContract.RawContacts.CONTENT_TYPE);
             shareIntent.putExtra(Intent.EXTRA_STREAM, contentUri);
+            shareIntent.setData(contentUri);
         } else {
             shareIntent = new Intent(Intent.ACTION_VIEW, Uri.fromFile(file));
             shareIntent.setType(mimeType);
