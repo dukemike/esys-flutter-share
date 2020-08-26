@@ -101,6 +101,7 @@ public class EsysFlutterSharePlugin implements MethodCallHandler {
         
         System.out.println("mime-type = " + mimeType);
         Intent chooser = Intent.createChooser(shareIntent, title);
+        chooser.putExtra("finishActivityOnSaveCompleted", true);
         List<ResolveInfo> resInfoList = activeContext.getPackageManager().queryIntentActivities(chooser, PackageManager.MATCH_DEFAULT_ONLY);
 
         for (ResolveInfo resolveInfo : resInfoList) {
