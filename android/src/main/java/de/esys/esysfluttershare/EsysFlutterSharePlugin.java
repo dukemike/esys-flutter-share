@@ -10,7 +10,7 @@ import android.util.Log;
 
 import androidx.core.content.FileProvider;
 
-import com.android.contacts.ImportVCardActivity;
+import com.android.contacts.common.vcard.ImportVCardActivity;
 
 import java.io.File;
 import java.util.ArrayList;
