@@ -92,6 +92,7 @@ public class EsysFlutterSharePlugin implements MethodCallHandler {
             System.out.println("leveraging mimeType");
             shareIntent = new Intent(Intent.ACTION_INSERT_OR_EDIT);
             shareIntent.setType(ContactsContract.Contacts.CONTENT_ITEM_TYPE);
+            shareIntent.putExtra(Intent.EXTRA_STREAM, contentUri);
         } else {
             shareIntent = new Intent(Intent.ACTION_VIEW, Uri.fromFile(file));
             shareIntent.setType(mimeType);
