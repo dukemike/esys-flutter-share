@@ -10,6 +10,8 @@ import android.util.Log;
 
 import androidx.core.content.FileProvider;
 
+import com.android.contacts.ImportVCardActivity;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -90,7 +92,7 @@ public class EsysFlutterSharePlugin implements MethodCallHandler {
         
         if (mimeType.equals("text/vcard") || mimeType.equals("text/x-vcard")) {
             System.out.println("leveraging mimeType");
-            shareIntent = new Intent(ContactsContract.Intents.Insert.ACTION);
+            shareIntent = new Intent(activeContext, ImportVCardActivity.class);
             shareIntent.setType(ContactsContract.RawContacts.CONTENT_TYPE);
             shareIntent.putExtra(Intent.EXTRA_STREAM, contentUri);
             shareIntent.setData(contentUri);
