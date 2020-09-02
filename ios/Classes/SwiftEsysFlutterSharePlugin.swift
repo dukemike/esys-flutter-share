@@ -46,6 +46,9 @@ public class SwiftEsysFlutterSharePlugin: NSObject, FlutterPlugin {
         let name:String = argsMap.value(forKey: "name") as! String
         let text:String = argsMap.value(forKey: "text") as! String
         
+        print(name);
+        print(text);
+        
         // load the file
         let docsPath:String = NSSearchPathForDirectoriesInDomains(.cachesDirectory,.userDomainMask , true).first!;
         let contentUri = NSURL(fileURLWithPath: docsPath).appendingPathComponent(name)
